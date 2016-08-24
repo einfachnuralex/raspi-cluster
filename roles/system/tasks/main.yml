@@ -1,0 +1,11 @@
+- name: Add and update packages
+  include: apt.yml
+
+- name: Copy config
+  template: src=iptables.ipv4.nat dest=/etc/iptables.ipv4.nat
+
+- name: Add iptables auto restore
+  copy: src=iptables dest=/etc/network/if-pre-up.d/iptables mode=0755
+
+- name: Activate IPv4 forward
+  sysctl: name=net.ipv4.ip_forward value=1 state=present

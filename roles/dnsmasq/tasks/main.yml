@@ -1,0 +1,9 @@
+---
+- name: Add and update packages
+  include: apt.yml
+
+- name: Copy config
+  template: src=dnsmasq.conf dest=/etc/dnsmasq.conf
+
+- name: Enable dnsmasq
+  service: enabled=yes state=started name=dnsmasq

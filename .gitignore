@@ -1,0 +1,5 @@
+hosts
+config.yml
+.vagrant
+bin/
+*.tar.gz

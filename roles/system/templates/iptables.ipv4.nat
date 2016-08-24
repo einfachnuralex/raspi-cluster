@@ -1,0 +1,14 @@
+*filter
+:INPUT ACCEPT [104:5384]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [70:5408]
+-A FORWARD -i {{ network.wan_interface }} -o {{ wifi.interface }} -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i {{ wifi.interface }} -o {{ network.wan_interface }} -j ACCEPT
+COMMIT
+*nat
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:OUTPUT ACCEPT [1:76]
+:POSTROUTING ACCEPT [0:0]
+-A POSTROUTING -o {{ network.wan_interface }} -j MASQUERADE
+COMMIT

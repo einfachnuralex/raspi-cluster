@@ -1,0 +1,20 @@
+---
+timezone: "Europe/Berlin"
+
+wifi:
+  ssid: "raspcluster"
+  password: "raspcluster"
+  interface: wlan0
+
+network:
+  domain: cluster.lan
+  service_subnet: 192.168.100.0/24
+  pod_subnet: 10.1.0.0/16
+
+dhcp:
+  dns: 8.8.8.8
+  range_from: 192.168.100.100
+  range_to: 192.168.100.200
+
+master:
+  ip: 192.168.100.1

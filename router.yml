@@ -1,0 +1,13 @@
+---
+- name: Router
+
+  hosts: master
+  remote_user: root
+
+  vars_files:
+  - config.yml
+
+  roles:
+  - dnsmasq
+  - hostapd
+  - system
