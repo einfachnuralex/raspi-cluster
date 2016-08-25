@@ -3,3 +3,5 @@ config.yml
 .vagrant
 bin/
 *.tar.gz
+
+*.old
