@@ -1,0 +1,25 @@
+---
+- name: master
+  hostname: master
+  cpu: 2
+  box: debian/jessie64
+  ram: 4096
+  ip1: 10.10.0.10
+- name: node1
+  hostname: node1
+  box: debian/jessie64
+  cpu: 2
+  ram: 2048
+  ip1: 10.10.0.20
+- name: node2
+  hostname: node2
+  box: debian/jessie64
+  cpu: 2
+  ram: 2048
+  ip1: 10.10.0.30
+- name: node3
+  hostname: node3
+  box: debian/jessie64
+  cpu: 2
+  ram: 2048
+  ip1: 10.10.0.40
