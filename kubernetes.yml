@@ -1,0 +1,31 @@
+---
+- name: Kubernetes
+
+  hosts: master
+  remote_user: root
+
+  vars_files:
+  - config.yml
+
+  roles:
+  - etcd
+  - role: flanneld
+    mode: master
+  - docker
+  - role: Kubernetes
+    mode: master
+
+- name: Kubernetes Nodes
+
+  hosts: nodes
+  remote_user: root
+
+  vars_files:
+  - config.yml
+
+  roles:
+  - role: flanneld
+    mode: node
+  - docker
+  - role: Kubernetes
+    mode: node

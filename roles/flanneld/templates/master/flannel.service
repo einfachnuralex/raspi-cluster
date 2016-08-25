@@ -1,0 +1,16 @@
+[Unit]
+Description=Flannel Overlay Network for Kubernetes
+After=network.target etcd.service
+Before=docker.service
+Requires=etcd.service
+
+[Service]
+ExecStartPre=/etc/kubernetes/flannel_init.sh
+ExecStart=/usr/bin/flanneld \
+     --etcd-endpoints=http://{{ master.ip }}:{{ etcd.port }} \
+     --subnet-file=/var/lib/flannel/subnet.env --iface={{ wifi.interface }}
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,7 +1,7 @@
 - name: Add and update packages
   include: apt.yml
 
-- name: Copy config
+- name: Copy iptables
   template: src=iptables.ipv4.nat dest=/etc/iptables.ipv4.nat
 
 - name: Add iptables auto restore
