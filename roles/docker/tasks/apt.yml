@@ -1,9 +1,9 @@
 - name: Add apt-transport-https
-  apt: name: 'apt-transport-https' state: present
+  apt: name='apt-transport-https' state=present
 
 - name: Add Hypriot repo key (arm)
   apt_key: url=https://packagecloud.io/gpg.key state=present
-  when: ansible_architecture == 'arm'
+  when: ansible_architecture == 'armv7l'
 
 - name: Add docker repo key (x86_64)
   apt_key: keyserver=keyserver.ubuntu.com id="58118E89F3A912897C070ADBF76221572C52609D" state=present
@@ -11,23 +11,31 @@
 
 - name: Add Hypriot repo (arm)
   apt_repository: repo='deb https://packagecloud.io/Hypriot/Schatzkiste/debian/ jessie main' state=present
-  when: ansible_architecture == 'arm'
+  when: ansible_architecture == 'armv7l'
 
 - name: Add docker repo (x86_64)
   apt_repository: repo='deb https://apt.dockerproject.org/repo/ debian-jessie main' state=present
   when: ansible_architecture == 'x86_64'
 
 - name: Update APT package cache
-  apt: update_cache: yes upgrade: safe
+  apt: update_cache=yes upgrade=safe
 
-- name: Install Packages
+- name: Install Packages (arm7l)
   apt:
     name: "{{ item }}"
     force: yes
     state: present
   with_items:
     - docker-hypriot
-      when: ansible_architecture == 'arm'
-    - docker-engine
-      when: ansible_architecture == 'x86_64'
     - bridge-utils
+  when: ansible_architecture == 'armv7l'
+
+- name: Install Packages (x86_64)
+  apt:
+    name: "{{ item }}"
+    force: yes
+    state: present
+  with_items:
+    - docker-engine
+    - bridge-utils
+  when: ansible_architecture == 'x86_64'

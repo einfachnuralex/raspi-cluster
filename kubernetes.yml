@@ -12,7 +12,7 @@
   - role: flanneld
     mode: master
   - docker
-  - role: Kubernetes
+  - role: kubernetes
     mode: master
 
 - name: Kubernetes Nodes
@@ -27,5 +27,5 @@
   - role: flanneld
     mode: node
   - docker
-  - role: Kubernetes
+  - role: kubernetes
     mode: node
