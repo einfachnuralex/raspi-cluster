@@ -7,9 +7,9 @@ After=network.target
 Environment=ETCD_UNSUPPORTED_ARCH=arm
 ExecStart=/usr/bin/etcd  \
   --data-dir=/var/lib/etcd \
-  --advertise-client-urls=http://master:{{ etcd.port }} \
-  --listen-client-urls=http://master:{{ etcd.port }} \
-  --listen-peer-urls=http://master:{{ etcd.peer_port }} \
+  --advertise-client-urls=http://{{ master.ip }}:{{ etcd.port }} \
+  --listen-client-urls=http://{{ master.ip }}:{{ etcd.port }} \
+  --listen-peer-urls=http://{{ master.ip }}:{{ etcd.peer_port }} \
   --name=etcd
 Restart=on-failure
 RestartSec=5
