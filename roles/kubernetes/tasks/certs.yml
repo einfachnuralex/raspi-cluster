@@ -1,3 +1,11 @@
+- name: Install Packages
+  apt:
+    name: "{{ item }}"
+    force: yes
+    state: present
+  with_items:
+    - curl
+
 - name: Create Kubernetes cert directory
   file: path=/etc/kubernetes/certs/ state=directory recurse=no owner=root group=root mode=0755
 

@@ -1,5 +1,6 @@
 ---
 timezone: "Europe/Berlin"
+cpu_arch: "x86_64"
 
 wifi:
   ssid: "raspcluster"
@@ -28,8 +29,8 @@ version:
   kubernetes: 1.3.2
 
 images:
-  hyperkube: gcr.io/google_containers/hyperkube-arm:v{{ version.kubernetes }}
-  pause: gcr.io/google_containers/pause-arm:3.0
+  hyperkube: gcr.io/google_containers/hyperkube-{{ cpu_arch }}:v{{ version.kubernetes }}
+  pause: gcr.io/google_containers/pause-{{ cpu_arch }}:3.0
 k8s:
   # Timing is good for demos. Defaults are 5min eviction and 40s node grace period
   pod_eviction_timeout: 5s
